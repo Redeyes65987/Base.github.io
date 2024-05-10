@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    <link rel="icon" href="orangecat.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>橘猫进制转换器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .converter-container {
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter-container">
+        <img src="orangecat.ico" width="25%">
+        <div class="buttons-container">
+            <button type="button" onclick="window.location.href = 'https://www.redcat.dns-dynamic.net/zh-hant'">繁體中文</button>
+            <button type="button" onclick="window.location.href = 'https://www.redcat.dns-dynamic.net/zh-hans'">简体中文</button>
+            <button type="button" onclick="window.location.href = 'https://www.redcat.dns-dynamic.net/en'">English</button>
+            <button type="button" onclick="window.location.href = 'https://www.redcat.dns-dynamic.net/ja'">日本語</button>
+        </div>
+        <h1>橘猫进制转换器</h1>
+        <form id="converter-form">
+            <label for="decimal-input">输入数字：</label>
+            <input type="text" id="decimal-input">
+            <br>
+            <label>输入数字的进制：</label>
+            <input type="radio" name="input-base" value="2"> 2进制
+            <input type="radio" name="input-base" value="5"> 5进制
+            <input type="radio" name="input-base" value="8"> 8进制
+            <input type="radio" name="input-base" value="10" checked> 10进制
+            <input type="radio" name="input-base" value="12"> 12进制
+            <input type="radio" name="input-base" value="16"> 16进制
+
+            <br>
+            <label>选择要转换成的进制：</label>
+            <input type="radio" name="output-base" value="2"> 2进制
+            <input type="radio" name="output-base" value="5"> 5进制
+            <input type="radio" name="output-base" value="8"> 8进制
+            <input type="radio" name="output-base" value="10" checked> 10进制
+            <input type="radio" name="output-base" value="12"> 12进制
+            <input type="radio" name="output-base" value="16"> 16进制
+
+            <br>
+            <button type="button" onclick="convert()">转换</button>
+            <button type="button" onclick="clearResult()">清除结果</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function convert() {
+            const decimalInput = document.getElementById('decimal-input').value;
+            const inputBase = parseInt(document.querySelector('input[name="input-base"]:checked').value, 10);
+            const outputBase = parseInt(document.querySelector('input[name="output-base"]:checked').value, 10);
+
+            const decimalValue = parseInt(decimalInput, inputBase);
+
+            const convertedValue = decimalValue.toString(outputBase);
+
+            const result = `
+                ${convertedValue}
+            `;
+
+            document.getElementById('result').innerHTML = result;
+        }
+
+        function clearResult() {
+            document.getElementById('result').innerHTML = '';
+        }
+    </script>
+</body>
+</html>

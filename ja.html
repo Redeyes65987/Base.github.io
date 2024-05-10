@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="icon" href="orangecat.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オレンジ猫進数変換ツール</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .converter-container {
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter-container">
+        <img src="orangecat.ico" width="25%">
+        <div class="buttons-container">
+            <button type="button" onclick="window.location.href = 'https://www.redcat.dns-dynamic.net/zh-hant'">繁體中文</button>
+            <button type="button" onclick="window.location.href = 'https://www.redcat.dns-dynamic.net/zh-hans'">简体中文</button>
+            <button type="button" onclick="window.location.href = 'https://www.redcat.dns-dynamic.net/en'">English</button>
+            <button type="button" onclick="window.location.href = 'https://www.redcat.dns-dynamic.net/ja'">日本語</button>
+        </div>
+        <h1>オレンジ猫進数変換ツール</h1>
+        <form id="converter-form">
+            <label for="decimal-input">入力数値：</label>
+            <input type="text" id="decimal-input">
+            <br>
+            <label>入力数値の進数：</label>
+            <input type="radio" name="input-base" value="2"> 2進数
+            <input type="radio" name="input-base" value="5"> 5進数
+            <input type="radio" name="input-base" value="8"> 8進数
+            <input type="radio" name="input-base" value="10" checked> 10進数
+            <input type="radio" name="input-base" value="12"> 12進数
+            <input type="radio" name="input-base" value="16"> 16進数
+
+            <br>
+            <label>変換先の進数：</label>
+            <input type="radio" name="output-base" value="2"> 2進数
+            <input type="radio" name="output-base" value="5"> 5進数
+            <input type="radio" name="output-base" value="8"> 8進数
+            <input type="radio" name="output-base" value="10" checked> 10進数
+            <input type="radio" name="output-base" value="12"> 12進数
+            <input type="radio" name="output-base" value="16"> 16進数
+
+            <br>
+            <button type="button" onclick="convert()">変換</button>
+            <button type="button" onclick="clearResult()">結果をクリア</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function convert() {
+            const decimalInput = document.getElementById('decimal-input').value;
+            const inputBase = parseInt(document.querySelector('input[name="input-base"]:checked').value, 10);
+            const outputBase = parseInt(document.querySelector('input[name="output-base"]:checked').value, 10);
+
+            const decimalValue = parseInt(decimalInput, inputBase);
+
+            const convertedValue = decimalValue.toString(outputBase);
+
+            const result = `
+                ${convertedValue}
+            `;
+
+            document.getElementById('result').innerHTML = result;
+        }
+
+        function clearResult() {
+            document.getElementById('result').innerHTML = '';
+        }
+    </script>
+</body>
+</html>
