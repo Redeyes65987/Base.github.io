@@ -18,6 +18,22 @@
             text-align: center;
             font-size: 18px;
         }
+        
+        button {
+            background-color: #0074D9;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        
+        input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -41,7 +57,7 @@
             <input type="radio" name="input-base" value="10" checked> 10進数
             <input type="radio" name="input-base" value="12"> 12進数
             <input type="radio" name="input-base" value="16"> 16進数
-
+            
             <br>
             <label>変換先の進数：</label>
             <input type="radio" name="output-base" value="2"> 2進数
@@ -50,7 +66,7 @@
             <input type="radio" name="output-base" value="10" checked> 10進数
             <input type="radio" name="output-base" value="12"> 12進数
             <input type="radio" name="output-base" value="16"> 16進数
-
+            
             <br>
             <button type="button" onclick="convert()">変換</button>
             <button type="button" onclick="clearResult()">結果をクリア</button>
@@ -69,7 +85,7 @@
             const convertedValue = decimalValue.toString(outputBase);
 
             const result = `
-                ${convertedValue}
+                轉換結果：${convertedValue}
             `;
 
             document.getElementById('result').innerHTML = result;
